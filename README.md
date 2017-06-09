@@ -1,5 +1,7 @@
 # python-zcashlib
 
+**IN PROGRESS** -- don't expect everything to work yet.
+
 This Python2/3 library provides an easy interface to the Zcash data
 structures and protocol. The approach is low-level and "ground up", with a
 focus on providing tools to manipulate the internals of how Zcash works.
