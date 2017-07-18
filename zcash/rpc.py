@@ -341,7 +341,8 @@ class Proxy(BaseProxy):
         Returns iterable of block hashes generated.
         """
         r = self._call('generate', numblocks)
-        return (lx(blk_hash) for blk_hash in r)
+        return r
+        # return (lx(blk_hash) for blk_hash in r)
 
     def getaccountaddress(self, account=None):
         """Return the current zcash address for receiving payments to this
@@ -572,8 +573,9 @@ class Proxy(BaseProxy):
         return r
     
     def listtransactions(self):
-        r = self._call('listtransactions')
+        r = self._call('listtransactions','*',20,0,True)
         return r
+
       
     def listunspent(self, minconf=0, maxconf=9999999, addrs=None):
         """Return unspent transaction outputs in wallet
