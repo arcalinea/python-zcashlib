@@ -138,6 +138,8 @@ class BaseProxy(object):
             if zcash_conf_file is None:
                 if platform.system() == 'Windows':
                     zcash_conf_file = os.path.join(os.environ['APPDATA'], 'Zcash')
+                elif platform.system() == 'Darwin':
+                    zcash_conf_file = os.path.expanduser('~/Library/Application Support/Zcash')
                 else:
                     zcash_conf_file = os.path.expanduser('~/.zcash')
                 zcash_conf_file = os.path.join(zcash_conf_file, 'zcash.conf')
