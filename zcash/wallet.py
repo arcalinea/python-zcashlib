@@ -24,24 +24,12 @@ if sys.version > '3':
     _bord = lambda x: x
 
 import zcash
-# import bitcoin.wallet
+import zcash.wallet
 import zcash.base58
 import zcash.core
 import zcash.core.key
 import zcash.core.script as script
 
-'''class CBitcoinAddressError(zcash.base58.Base58Error):
-    """Raised when an invalid zcash address is encountered"""
-    raise NotImplementedError
-
-class CZCPaymentAddress(zcash.base58.Base58Error):
-    """A zcash shielded address"""
-    raise NotImplementedError
-
-class CZCSpendingKey(zcash.base58.Base58Error):
-    """A zcash spending key"""
-    raise NotImplementedError
-'''
 class CBitcoinAddress(zcash.base58.CBase58Data):
     """A zcash transparent address"""
     @classmethod

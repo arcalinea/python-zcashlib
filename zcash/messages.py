@@ -33,7 +33,6 @@ else:
 from zcash.core import *
 from zcash.core.serialize import *
 from zcash.net import *
-import bitcoin
 
 MSG_TX = 1
 MSG_BLOCK = 2
@@ -148,7 +147,7 @@ class msg_version(MsgSerializable):
             c.strSubVer = None
             c.nStartingHeight = None
         return c
- 
+
     def msg_ser(self, f):
         f.write(struct.pack(b"<i", self.nVersion))
         f.write(struct.pack(b"<Q", self.nServices))
