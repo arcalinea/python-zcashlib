@@ -130,8 +130,6 @@ class BaseProxy(object):
         # __conn being created __del__() can detect the condition and handle it
         # correctly.
         self.__conn = None
-        #this line is only good for regtest
-        # service_port = 18232
 
         if service_url is None:
             # Figure out the path to the zcash.conf file
@@ -221,6 +219,8 @@ class BaseProxy(object):
 
     def _get_response(self):
         http_response = self.__conn.getresponse()
+
+
         if http_response is None:
             raise JSONRPCError({
                 'code': -342, 'message': 'missing HTTP response from server'})
@@ -570,11 +570,7 @@ class Proxy(BaseProxy):
     def listreceivedbyaddress(self, minconf=1):
         r = self._call('listreceivedbyaddress',minconf,False)
         return r
-    
-    def listtransactions(self):
-        r = self._call('listtransactions')
-        return r
-      
+
     def listunspent(self, minconf=0, maxconf=9999999, addrs=None):
         """Return unspent transaction outputs in wallet
 
@@ -592,7 +588,7 @@ class Proxy(BaseProxy):
         r2 = []
         for unspent in r:
             unspent['outpoint'] = COutPoint(lx(unspent['txid']), unspent['vout'])
-            
+
             unspent['address'] = CBitcoinAddress(unspent['address'])
             unspent['scriptPubKey'] = CScript(unhexlify(unspent['scriptPubKey']))
             unspent['amount'] = int(unspent['amount'] * COIN)
